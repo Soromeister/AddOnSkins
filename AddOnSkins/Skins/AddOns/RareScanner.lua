@@ -1,18 +1,33 @@
 local AS, L, S, R = unpack(AddOnSkins)
 
 function R:RareScanner()
-	S:HandleFrame(RARESCANNER_BUTTON, 'Default')
-	S:HandleButton(RARESCANNER_BUTTON.CloseButton)
-	RARESCANNER_BUTTON.CloseButton:ClearAllPoints()
-	RARESCANNER_BUTTON.CloseButton:SetPoint("TOPRIGHT", -5, -5)
-	S:HandleButton(RARESCANNER_BUTTON.FilterEntityButton)
-	RARESCANNER_BUTTON.FilterEntityButton:SetNormalTexture([[Interface\WorldMap\Dash_64Grey]])
-	RARESCANNER_BUTTON.FilterEntityButton:ClearAllPoints()
-	RARESCANNER_BUTTON.FilterEntityButton:SetPoint("TOPLEFT", 5, -5)
-	S:HandleButton(RARESCANNER_BUTTON.UnfilterEnabledButton)
-	RARESCANNER_BUTTON.FilterEnabledTexture:SetTexture([[Interface\WorldMap\Skull_64]])
-	RARESCANNER_BUTTON.UnfilterEnabledButton:ClearAllPoints()
-	RARESCANNER_BUTTON.UnfilterEnabledButton:SetPoint("TOPLEFT", 5, -5)
+	local frame = RARESCANNER_BUTTON
+	if not frame then return end
+
+	S:HandleFrame(frame, 'Default')
+
+	if frame.CloseButton then
+		S:HandleButton(frame.CloseButton)
+		frame.CloseButton:ClearAllPoints()
+		frame.CloseButton:SetPoint("TOPRIGHT", -5, -5)
+	end
+
+	if frame.FilterEntityButton then
+		S:HandleButton(frame.FilterEntityButton)
+		frame.FilterEntityButton:SetNormalTexture([[Interface\WorldMap\Dash_64Grey]])
+		frame.FilterEntityButton:ClearAllPoints()
+		frame.FilterEntityButton:SetPoint("TOPLEFT", 5, -5)
+	end
+
+	if frame.FilterEnabledTexture then
+		frame.FilterEnabledTexture:SetTexture([[Interface\WorldMap\Skull_64]])
+	end
+
+	if frame.UnfilterEnabledButton then
+		S:HandleButton(frame.UnfilterEnabledButton)
+		frame.UnfilterEnabledButton:ClearAllPoints()
+		frame.UnfilterEnabledButton:SetPoint("TOPLEFT", 5, -5)
+	end
 end
 
 AS:RegisterSkin('RareScanner')
