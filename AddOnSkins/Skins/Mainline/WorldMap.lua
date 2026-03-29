@@ -58,11 +58,15 @@ function S:WorldMapFrame()
 		QuestMapFrame.DetailsFrame:StripTextures(true)
 		QuestMapFrame.DetailsFrame:CreateBackdrop()
 		QuestMapFrame.DetailsFrame.backdrop:Point('TOPLEFT', -3, 5)
-		QuestMapFrame.DetailsFrame.backdrop:Point('BOTTOMRIGHT', QuestMapFrame.DetailsFrame.RewardsFrame, 'TOPRIGHT', -1, -12)
-		QuestMapFrame.DetailsFrame.RewardsFrame:StripTextures()
-		QuestMapFrame.DetailsFrame.RewardsFrame:CreateBackdrop()
-		QuestMapFrame.DetailsFrame.RewardsFrame.backdrop:Point('TOPLEFT', -3, -14)
-		QuestMapFrame.DetailsFrame.RewardsFrame.backdrop:Point('BOTTOMRIGHT', -1, 1)
+		if QuestMapFrame.DetailsFrame.RewardsFrame then
+			QuestMapFrame.DetailsFrame.backdrop:Point('BOTTOMRIGHT', QuestMapFrame.DetailsFrame.RewardsFrame, 'TOPRIGHT', -1, -12)
+			QuestMapFrame.DetailsFrame.RewardsFrame:StripTextures()
+			QuestMapFrame.DetailsFrame.RewardsFrame:CreateBackdrop()
+			QuestMapFrame.DetailsFrame.RewardsFrame.backdrop:Point('TOPLEFT', -3, -14)
+			QuestMapFrame.DetailsFrame.RewardsFrame.backdrop:Point('BOTTOMRIGHT', -1, 1)
+		else
+			QuestMapFrame.DetailsFrame.backdrop:Point('BOTTOMRIGHT', -1, -12)
+		end
 
 		if QuestMapFrame.Background then
 			QuestMapFrame.Background:SetAlpha(0)

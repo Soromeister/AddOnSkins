@@ -134,11 +134,13 @@ AS.Options.args.general.args.Colors.args.HighlightColor = ACH:Color(L["Highlight
 AS.Options.args.general.args.Colors.args.SelectedColor = ACH:Color(L["Selected / Checked"], nil, 4)
 AS.Options.args.general.args.Colors.args.StatusBarColor = ACH:Color(L["Status Bars"], nil, 5)
 
-AS.Options.args.skins = ACH:Group(L["Skins"], nil, 1, nil, function(info) return AS:CheckOption(info[#info]) end, function(info, value) AS:SetOption(info[#info], value) AS.NeedReload = true end)
-AS.Options.args.skins.args.addons = ACH:MultiSelect(L["AddOns"], nil, 1, nil, nil, nil, function(_, key) return AS:CheckOption(key) end, function(_, key, value) AS:SetOption(key, value) AS.NeedReload = true end)
-AS.Options.args.skins.args.blizzard = ACH:MultiSelect(L["Blizzard"], nil, 2, nil, nil, nil, function(_, key) return AS:CheckOption(key) end, function(_, key, value) AS:SetOption(key, value) AS.NeedReload = true end)
-AS.Options.args.skins.args.blizzardEnableAll = ACH:Execute(L["Blizzard: Enable All"], nil, 3, function() for SkinName in pairs(BlizzardSkins) do AS:SetOption(SkinName, true) end end)
-AS.Options.args.skins.args.blizzardDisableAll = ACH:Execute(L["Blizzard: Disable All"], nil, 4, function() for SkinName in pairs(BlizzardSkins) do AS:SetOption(SkinName, false) end end)
+AS.Options.args.skins = ACH:Group(L["Skins"], nil, 1, 'tab', function(info) return AS:CheckOption(info[#info]) end, function(info, value) AS:SetOption(info[#info], value) AS.NeedReload = true end)
+AS.Options.args.skins.args.addonsTab = ACH:Group(L["AddOns"], nil, 1)
+AS.Options.args.skins.args.addonsTab.args.addons = ACH:MultiSelect('', nil, 1, nil, nil, nil, function(_, key) return AS:CheckOption(key) end, function(_, key, value) AS:SetOption(key, value) AS.NeedReload = true end)
+AS.Options.args.skins.args.blizzardTab = ACH:Group(L["Blizzard"], nil, 2)
+AS.Options.args.skins.args.blizzardTab.args.blizzard = ACH:MultiSelect('', nil, 1, nil, nil, nil, function(_, key) return AS:CheckOption(key) end, function(_, key, value) AS:SetOption(key, value) AS.NeedReload = true end)
+AS.Options.args.skins.args.blizzardTab.args.blizzardEnableAll = ACH:Execute(L["Blizzard: Enable All"], nil, 2, function() for SkinName in pairs(BlizzardSkins) do AS:SetOption(SkinName, true) end end)
+AS.Options.args.skins.args.blizzardTab.args.blizzardDisableAll = ACH:Execute(L["Blizzard: Disable All"], nil, 3, function() for SkinName in pairs(BlizzardSkins) do AS:SetOption(SkinName, false) end end)
 
 AS.Options.args.embed = ACH:Group(L["Embed Settings"], nil, 4, nil, function(info) return AS:CheckOption(info[#info]) end, function(info, value) AS:SetOption(info[#info], value) ES:Check() end)
 AS.Options.args.embed.args.EmbedIsHidden = ACH:Toggle(L["|cFFFF0000Embed is currently HIDDEN|r"], nil, 0, nil, nil, 'full', nil, nil, nil, function() return not AS:CheckOption('EmbedIsHidden') end)
@@ -270,9 +272,9 @@ function AS:BuildOptions()
 	for _, skinName in pairs(skins) do
 		if strfind(skinName, 'Blizzard_') then
 			BlizzardSkins[skinName] = true
-			AS.Options.args.skins.args.blizzard.values[skinName] = strfind(skinName, 'Blizzard_') and (BlizzardNames[skinName] or strtrim(skinName:gsub('^Blizzard_(.+)','%1'):gsub('(%l)(%u%l)','%1 %2')))
+			AS.Options.args.skins.args.blizzardTab.args.blizzard.values[skinName] = strfind(skinName, 'Blizzard_') and (BlizzardNames[skinName] or strtrim(skinName:gsub('^Blizzard_(.+)','%1'):gsub('(%l)(%u%l)','%1 %2')))
 		else
-			AS.Options.args.skins.args.addons.values[skinName] = AS:CheckAddOn(skinName) and GetAddOnMetadata(skinName, 'Title') or strtrim(skinName:gsub('(%l)(%u%l)','%1 %2'))
+			AS.Options.args.skins.args.addonsTab.args.addons.values[skinName] = AS:CheckAddOn(skinName) and GetAddOnMetadata(skinName, 'Title') or strtrim(skinName:gsub('(%l)(%u%l)','%1 %2'))
 		end
 	end
 

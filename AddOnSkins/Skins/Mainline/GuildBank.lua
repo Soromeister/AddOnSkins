@@ -32,20 +32,26 @@ function S:Blizzard_GuildBankUI()
 	_G.GuildBankInfoScrollFrame:Point('TOPLEFT', _G.GuildBankInfo, 'TOPLEFT', -10, 12)
 	_G.GuildBankInfoScrollFrame:StripTextures()
 	_G.GuildBankInfoScrollFrame:Width(_G.GuildBankInfoScrollFrame:GetWidth() - 8)
-	_G.GuildBankTransactionsScrollFrame:StripTextures()
+	if _G.GuildBankTransactionsScrollFrame then
+		_G.GuildBankTransactionsScrollFrame:StripTextures()
+	end
 
 	frame.BlackBG:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, nil, 1)
 	frame.BlackBG.backdrop:Point('TOPLEFT', frame.BlackBG, 'TOPLEFT', 4, 0)
 	frame.BlackBG.backdrop:Point('BOTTOMRIGHT', frame.BlackBG, 'BOTTOMRIGHT', -3, 3)
 
-	S:HandleScrollBar(_G.GuildBankTransactionsScrollFrameScrollBar)
-	S:HandleScrollBar(_G.GuildBankInfoScrollFrameScrollBar)
-	_G.GuildBankTransactionsScrollFrameScrollBar:ClearAllPoints()
-	_G.GuildBankTransactionsScrollFrameScrollBar:Point('TOPRIGHT', frame.BlackBG.backdrop, 'TOPRIGHT', -4, -21)
-	_G.GuildBankTransactionsScrollFrameScrollBar:Point('BOTTOMRIGHT', frame.BlackBG.backdrop, 'BOTTOMRIGHT', -4, 21)
-	_G.GuildBankInfoScrollFrameScrollBar:ClearAllPoints()
-	_G.GuildBankInfoScrollFrameScrollBar:Point('TOPRIGHT', frame.BlackBG.backdrop, 'TOPRIGHT', -4, -21)
-	_G.GuildBankInfoScrollFrameScrollBar:Point('BOTTOMRIGHT', frame.BlackBG.backdrop, 'BOTTOMRIGHT', -4, 21)
+	if _G.GuildBankTransactionsScrollFrameScrollBar then
+		S:HandleScrollBar(_G.GuildBankTransactionsScrollFrameScrollBar)
+		_G.GuildBankTransactionsScrollFrameScrollBar:ClearAllPoints()
+		_G.GuildBankTransactionsScrollFrameScrollBar:Point('TOPRIGHT', frame.BlackBG.backdrop, 'TOPRIGHT', -4, -21)
+		_G.GuildBankTransactionsScrollFrameScrollBar:Point('BOTTOMRIGHT', frame.BlackBG.backdrop, 'BOTTOMRIGHT', -4, 21)
+	end
+	if _G.GuildBankInfoScrollFrameScrollBar then
+		S:HandleScrollBar(_G.GuildBankInfoScrollFrameScrollBar)
+		_G.GuildBankInfoScrollFrameScrollBar:ClearAllPoints()
+		_G.GuildBankInfoScrollFrameScrollBar:Point('TOPRIGHT', frame.BlackBG.backdrop, 'TOPRIGHT', -4, -21)
+		_G.GuildBankInfoScrollFrameScrollBar:Point('BOTTOMRIGHT', frame.BlackBG.backdrop, 'BOTTOMRIGHT', -4, 21)
+	end
 
 	for i=1, _G.MAX_GUILDBANK_TABS do
 		local tab = _G['GuildBankTab'..i]

@@ -110,6 +110,7 @@ local function HandleAffixIcons(self)
 		self.PowerLevel:SetText('')
 	end
 
+	if not self.Affixes then return end
 	for _, frame in ipairs(self.Affixes) do
 		frame.Border:SetTexture()
 		frame.Portrait:SetTexture()
