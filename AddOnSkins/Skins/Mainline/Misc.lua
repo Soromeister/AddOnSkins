@@ -221,7 +221,7 @@ function S:BlizzardMiscFrames()
 		StaticPopup:StripTextures()
 		StaticPopup:SetTemplate('Transparent')
 		StaticPopup:HookScript('OnShow', function() -- UpdateRecapButton is created OnShow
-			if StaticPopup.UpdateRecapButton and (not StaticPopup.UpdateRecapButtonHooked) then
+			if StaticPopup.UpdateRecapButton and S.UpdateRecapButton and (not StaticPopup.UpdateRecapButtonHooked) then
 				StaticPopup.UpdateRecapButtonHooked = true -- we should only hook this once
 				hooksecurefunc(StaticPopup, 'UpdateRecapButton', S.UpdateRecapButton)
 			end

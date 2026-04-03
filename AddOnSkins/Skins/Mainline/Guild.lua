@@ -80,7 +80,7 @@ function S:Blizzard_GuildUI()
 		_G['GuildRosterColumnButton'..i]:StripTextures(true)
 	end
 
-	S:HandleDropDownBox(_G.GuildRosterViewDropdown, 200)
+	if _G.GuildRosterViewDropdown then S:HandleDropDownBox(_G.GuildRosterViewDropdown, 200) end
 
 	for i = 1, 14 do
 		local button = _G['GuildRosterContainerButton'..i]
@@ -94,8 +94,10 @@ function S:Blizzard_GuildUI()
 	_G.GuildMemberDetailFrame:SetTemplate('Transparent')
 	_G.GuildMemberNoteBackground.NineSlice:SetTemplate('Transparent')
 	_G.GuildMemberOfficerNoteBackground.NineSlice:SetTemplate('Transparent')
-	_G.GuildMemberRankDropdown:SetFrameLevel(_G.GuildMemberRankDropdown:GetFrameLevel() + 5)
-	S:HandleDropDownBox(_G.GuildMemberRankDropdown, 175)
+	if _G.GuildMemberRankDropdown then
+		_G.GuildMemberRankDropdown:SetFrameLevel(_G.GuildMemberRankDropdown:GetFrameLevel() + 5)
+		S:HandleDropDownBox(_G.GuildMemberRankDropdown, 175)
+	end
 
 	--Increase height of GuildMemberDetailFrame by changing global variables
 	local GuildMemberDetailFrame = _G.GuildMemberDetailFrame

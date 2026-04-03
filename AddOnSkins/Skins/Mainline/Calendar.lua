@@ -142,16 +142,16 @@ function R:Blizzard_Calendar()
 
 	S:HandleEditBox(_G.CalendarCreateEventInviteEdit)
 	S:HandleEditBox(_G.CalendarCreateEventTitleEdit)
-	S:HandleDropDownBox(_G.CalendarCreateEventTypeDropDown, 120)
-	S:HandleDropDownBox(_G.CalendarCreateEventCommunityDropDown, 240)
+	if _G.CalendarCreateEventTypeDropDown then S:HandleDropDownBox(_G.CalendarCreateEventTypeDropDown, 120) end
+	if _G.CalendarCreateEventCommunityDropDown then S:HandleDropDownBox(_G.CalendarCreateEventCommunityDropDown, 240) end
 
 	S:HandleCloseButton(_G.CalendarCreateEventCloseButton)
 	S:HandleCheckBox(_G.CalendarCreateEventLockEventCheck)
 
-	S:HandleDropDownBox(_G.CalendarCreateEventHourDropDown, 75)
-	S:HandleDropDownBox(_G.CalendarCreateEventMinuteDropDown, 75)
-	S:HandleDropDownBox(_G.CalendarCreateEventAMPMDropDown, 75)
-	S:HandleDropDownBox(_G.CalendarCreateEventDifficultyOptionDropDown)
+	if _G.CalendarCreateEventHourDropDown then S:HandleDropDownBox(_G.CalendarCreateEventHourDropDown, 75) end
+	if _G.CalendarCreateEventMinuteDropDown then S:HandleDropDownBox(_G.CalendarCreateEventMinuteDropDown, 75) end
+	if _G.CalendarCreateEventAMPMDropDown then S:HandleDropDownBox(_G.CalendarCreateEventAMPMDropDown, 75) end
+	if _G.CalendarCreateEventDifficultyOptionDropDown then S:HandleDropDownBox(_G.CalendarCreateEventDifficultyOptionDropDown) end
 
 	_G.CalendarViewEventTitle:ClearAllPoints()
 	S:Point(_G.CalendarViewEventTitle, 'TOPLEFT', _G.CalendarViewEventIcon, 'TOPRIGHT', 5, 0)
@@ -199,8 +199,8 @@ function R:Blizzard_Calendar()
 	--Mass Invite Frame
 	S:HandleFrame(_G.CalendarMassInviteFrame)
 	S:StripTextures(_G.CalendarMassInviteFrame.Header)
-	S:HandleDropDownBox(_G.CalendarMassInviteCommunityDropDown, 200)
-	S:HandleDropDownBox(_G.CalendarMassInviteRankMenu)
+	if _G.CalendarMassInviteCommunityDropDown then S:HandleDropDownBox(_G.CalendarMassInviteCommunityDropDown, 200) end
+	if _G.CalendarMassInviteRankMenu then S:HandleDropDownBox(_G.CalendarMassInviteRankMenu) end
 	S:HandleEditBox(_G.CalendarMassInviteMinLevelEdit)
 	S:HandleEditBox(_G.CalendarMassInviteMaxLevelEdit)
 	S:HandleCloseButton(_G.CalendarMassInviteCloseButton)

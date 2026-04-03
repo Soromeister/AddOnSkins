@@ -11,9 +11,11 @@ function R:Blizzard_ArchaeologyUI()
 	S:HandleButton(ArchaeologyFrame.artifactPage.solveFrame.solveButton, true)
 	S:HandleButton(ArchaeologyFrame.artifactPage.backButton, true)
 
-	S:HandleDropDownBox(_G.ArchaeologyFrame.raceFilterDropDown)
-	_G.ArchaeologyFrame.raceFilterDropDown.Text:ClearAllPoints()
-	S:Point(_G.ArchaeologyFrame.raceFilterDropDown.Text, 'LEFT', _G.ArchaeologyFrame.raceFilterDropDown.backdrop, 'LEFT', 4, 0)
+	if _G.ArchaeologyFrame.raceFilterDropDown then
+		S:HandleDropDownBox(_G.ArchaeologyFrame.raceFilterDropDown)
+		_G.ArchaeologyFrame.raceFilterDropDown.Text:ClearAllPoints()
+		S:Point(_G.ArchaeologyFrame.raceFilterDropDown.Text, 'LEFT', _G.ArchaeologyFrame.raceFilterDropDown.backdrop, 'LEFT', 4, 0)
+	end
 
 	if AS:CheckOptions('Parchment') then
 		_G.ArchaeologyFrameBgLeft:SetDrawLayer('BACKGROUND', 2)

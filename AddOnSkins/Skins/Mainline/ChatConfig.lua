@@ -202,8 +202,8 @@ function R:Blizzard_ChatConfig()
 	S:HandleButton(_G.TextToSpeechDefaultButton)
 	S:HandleCheckBox(_G.TextToSpeechCharacterSpecificButton)
 
-	S:HandleDropDownBox(_G.TextToSpeechFrameTtsVoiceDropdown)
-	S:HandleDropDownBox(_G.TextToSpeechFrameTtsVoiceAlternateDropdown)
+	if _G.TextToSpeechFrameTtsVoiceDropdown then S:HandleDropDownBox(_G.TextToSpeechFrameTtsVoiceDropdown) end
+	if _G.TextToSpeechFrameTtsVoiceAlternateDropdown then S:HandleDropDownBox(_G.TextToSpeechFrameTtsVoiceAlternateDropdown) end
 	S:HandleSliderFrame(_G.TextToSpeechFrameAdjustRateSlider)
 	S:HandleSliderFrame(_G.TextToSpeechFrameAdjustVolumeSlider)
 

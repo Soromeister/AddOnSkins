@@ -118,9 +118,11 @@ function R:Blizzard_AchievementUI()
 	S:Point(AchievementFrame.SearchBox, 'TOPRIGHT', AchievementFrame, 'TOPRIGHT', -25, -2)
 	S:Point(AchievementFrame.SearchBox, 'BOTTOMLEFT', AchievementFrame, 'TOPRIGHT', -130, -20)
 
-	S:HandleDropDownBox(_G.AchievementFrameFilterDropDown)
-	_G.AchievementFrameFilterDropDown:ClearAllPoints()
-	S:Point(_G.AchievementFrameFilterDropDown, 'RIGHT', AchievementFrame.SearchBox, 'LEFT', 5, -5)
+	if _G.AchievementFrameFilterDropDown then
+		S:HandleDropDownBox(_G.AchievementFrameFilterDropDown)
+		_G.AchievementFrameFilterDropDown:ClearAllPoints()
+		S:Point(_G.AchievementFrameFilterDropDown, 'RIGHT', AchievementFrame.SearchBox, 'LEFT', 5, -5)
+	end
 
 	-- Bottom Tabs
 	for i = 1, 3 do

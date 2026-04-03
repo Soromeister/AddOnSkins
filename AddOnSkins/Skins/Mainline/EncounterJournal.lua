@@ -155,7 +155,7 @@ function S:Blizzard_EncounterJournal()
 	local InstanceSelect = EJ.instanceSelect
 	InstanceSelect.bg:Kill()
 
-	S:HandleDropDownBox(InstanceSelect.tierDropDown)
+	if InstanceSelect.tierDropDown then S:HandleDropDownBox(InstanceSelect.tierDropDown) end
 	S:HandleTrimScrollBar(InstanceSelect.ScrollBar)
 
 	-- Bottom tabs
@@ -541,8 +541,10 @@ function S:Blizzard_EncounterJournal()
 	end
 
 	local LootDropdown = _G.EncounterJournalLootJournalViewDropDown
-	S:HandleDropDownBox(LootDropdown)
-	LootDropdown:SetScript('OnShow', function(dd) dd:SetFrameLevel(5) end) -- might be able to hook a function later; hotfix builds didn't export Blizzard_LootJournalItems.xml
+	if LootDropdown then
+		S:HandleDropDownBox(LootDropdown)
+		LootDropdown:SetScript('OnShow', function(dd) dd:SetFrameLevel(5) end) -- might be able to hook a function later; hotfix builds didn't export Blizzard_LootJournalItems.xml
+	end
 
 	do -- Item Sets
 		local ItemSetsFrame = EJ.LootJournalItems.ItemSetsFrame

@@ -67,7 +67,7 @@ function S:Blizzard_PVPUI()
 	HonorFrame:StripTextures()
 
 	S:HandleTrimScrollBar(_G.HonorFrame.SpecificScrollBar)
-	S:HandleDropDownBox(_G.HonorFrameTypeDropDown, 230)
+	if _G.HonorFrameTypeDropDown then S:HandleDropDownBox(_G.HonorFrameTypeDropDown, 230) end
 	S:HandleButton(_G.HonorFrameQueueButton)
 
 	local BonusFrame = HonorFrame.BonusFrame
