@@ -41,9 +41,11 @@ function S:Blizzard_InspectUI()
 	S:HandleButton(_G.InspectPaperDollFrame.ViewButton)
 	S:HandleButton(_G.InspectPaperDollItemsFrame.InspectTalents)
 
-	_G.SpecializationRing:Hide()
-	S:HandleIcon(_G.SpecializationSpecIcon, true)
-	_G.SpecializationSpecIcon:Size(55, 55) -- 70, 70 default size
+	if _G.SpecializationRing then _G.SpecializationRing:Hide() end
+	if _G.SpecializationSpecIcon then
+		S:HandleIcon(_G.SpecializationSpecIcon, true)
+		_G.SpecializationSpecIcon:Size(55, 55) -- 70, 70 default size
+	end
 
 	-- Create portrait element for the PvP Frame so we can see prestige
 	local InspectPVPFrame = _G.InspectPVPFrame
