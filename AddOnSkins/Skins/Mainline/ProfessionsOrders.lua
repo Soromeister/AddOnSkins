@@ -217,14 +217,20 @@ function S:Blizzard_ProfessionsCustomerOrders()
 	browseOrders.CategoryList.ScrollBar:Point('BOTTOMRIGHT', 0, -2)
 
 	local search = browseOrders.SearchBar
-	search.FavoritesSearchButton:Size(22)
-	S:HandleButton(search.FavoritesSearchButton)
+	if search.FavoritesSearchButton then
+		search.FavoritesSearchButton:Size(22)
+		S:HandleButton(search.FavoritesSearchButton)
+	end
 	S:HandleEditBox(search.SearchBox)
-	S:HandleButton(search.SearchButton)
+	if search.SearchButton then
+		S:HandleButton(search.SearchButton)
+	end
 
 	local filter = search.FilterButton
-	S:HandleCloseButton(filter.ClearFiltersButton)
-	S:HandleButton(filter)
+	if filter then
+		S:HandleCloseButton(filter.ClearFiltersButton)
+		S:HandleButton(filter)
+	end
 
 	hooksecurefunc(browseOrders.CategoryList.ScrollBox, 'Update', BrowseOrdersUpdate)
 

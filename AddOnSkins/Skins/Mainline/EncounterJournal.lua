@@ -205,18 +205,22 @@ function S:Blizzard_EncounterJournal()
 	EncounterInfo.instanceTitle:Point('BOTTOM', EncounterInfo.bossesScroll, 'TOP', 10, 15)
 
 	EncounterInfo.difficulty:StripTextures()
-	EncounterInfo.reset:StripTextures()
+	if EncounterInfo.reset then EncounterInfo.reset:StripTextures() end
 
 	-- Buttons
 	EncounterInfo.difficulty:ClearAllPoints()
 	EncounterInfo.difficulty:Point('BOTTOMRIGHT', _G.EncounterJournalEncounterFrameInfoBG, 'TOPRIGHT', -5, 7)
-	HandleButton(EncounterInfo.reset)
+	if EncounterInfo.reset then HandleButton(EncounterInfo.reset) end
 	HandleButton(EncounterInfo.difficulty)
 
-	EncounterInfo.reset:ClearAllPoints()
-	EncounterInfo.reset:Point('TOPRIGHT', EncounterInfo.difficulty, 'TOPLEFT', -10, 0)
-	_G.EncounterJournalEncounterFrameInfoResetButtonTexture:SetTexture([[Interface\EncounterJournal\UI-EncounterJournalTextures]])
-	_G.EncounterJournalEncounterFrameInfoResetButtonTexture:SetTexCoord(0.90625000, 0.94726563, 0.00097656, 0.02050781)
+	if EncounterInfo.reset then
+		EncounterInfo.reset:ClearAllPoints()
+		EncounterInfo.reset:Point('TOPRIGHT', EncounterInfo.difficulty, 'TOPLEFT', -10, 0)
+	end
+	if _G.EncounterJournalEncounterFrameInfoResetButtonTexture then
+		_G.EncounterJournalEncounterFrameInfoResetButtonTexture:SetTexture([[Interface\EncounterJournal\UI-EncounterJournalTextures]])
+		_G.EncounterJournalEncounterFrameInfoResetButtonTexture:SetTexCoord(0.90625000, 0.94726563, 0.00097656, 0.02050781)
+	end
 
 	S:HandleTrimScrollBar(EncounterInfo.BossesScrollBar)
 	S:HandleTrimScrollBar(_G.EncounterJournalEncounterFrameInstanceFrame.LoreScrollBar)
