@@ -73,9 +73,9 @@ function S:Blizzard_InspectUI()
 
 	-- Background Artwork
 	if E.private.skins.parchmentRemoverEnable then
-		_G.InspectGuildFrameBG:Kill()
-		_G.InspectPVPFrame.BG:Kill()
-		_G.InspectTalentFrame:StripTextures()
+		if _G.InspectGuildFrameBG then _G.InspectGuildFrameBG:Kill() end
+		if _G.InspectPVPFrame.BG then _G.InspectPVPFrame.BG:Kill() end
+		if _G.InspectTalentFrame then _G.InspectTalentFrame:StripTextures() end
 	end
 
 	_G.InspectModelFrameBorderTopLeft:Kill()
