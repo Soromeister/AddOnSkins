@@ -411,15 +411,23 @@ function S:Blizzard_EncounterJournal()
 
 	-- Powers
 	local LJ = EJ.LootJournal
-	HandleButton(LJ.ClassDropDownButton, true)
-	LJ.ClassDropDownButton:SetFrameLevel(10)
-	HandleButton(LJ.RuneforgePowerFilterDropDownButton, true)
-	LJ.RuneforgePowerFilterDropDownButton:SetFrameLevel(10)
+	if LJ then
+		if LJ.ClassDropDownButton then
+			HandleButton(LJ.ClassDropDownButton, true)
+			LJ.ClassDropDownButton:SetFrameLevel(10)
+		end
+		if LJ.RuneforgePowerFilterDropDownButton then
+			HandleButton(LJ.RuneforgePowerFilterDropDownButton, true)
+			LJ.RuneforgePowerFilterDropDownButton:SetFrameLevel(10)
+		end
 
-	S:HandleTrimScrollBar(_G.EncounterJournal.LootJournal.ScrollBar)
+		if LJ.ScrollBar then
+			S:HandleTrimScrollBar(LJ.ScrollBar)
+		end
+	end
 
 	for _, button in next, { _G.EncounterJournalEncounterFrameInfoFilterToggle, _G.EncounterJournalEncounterFrameInfoSlotFilterToggle } do
-		HandleButton(button, true)
+		if button then HandleButton(button, true) end
 	end
 
 	hooksecurefunc(_G.EncounterJournal.instanceSelect.ScrollBox, 'Update', function(frame)
