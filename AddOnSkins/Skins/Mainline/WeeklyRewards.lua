@@ -33,10 +33,12 @@ local function SkinActivityFrame(frame, isObject)
 	if frame.Border then
 		if isObject then
 			frame.Border:SetAlpha(0)
-			frame.SelectedTexture:SetAlpha(0)
-			frame.LockIcon:SetVertexColor(unpack(E.media.rgbvaluecolor))
-			hooksecurefunc(frame, 'SetSelectionState', UpdateSelection)
-			hooksecurefunc(frame.ItemFrame, 'SetDisplayedItem', SkinRewardIcon)
+			if frame.SelectedTexture then frame.SelectedTexture:SetAlpha(0) end
+			if frame.LockIcon then frame.LockIcon:SetVertexColor(unpack(E.media.rgbvaluecolor)) end
+			if frame.SetSelectionState then hooksecurefunc(frame, 'SetSelectionState', UpdateSelection) end
+			if frame.ItemFrame and frame.ItemFrame.SetDisplayedItem then
+				hooksecurefunc(frame.ItemFrame, 'SetDisplayedItem', SkinRewardIcon)
+			end
 		else
 			frame.Border:SetTexCoord(.926, 1, 0, 1)
 			frame.Border:Size(25, 137)
