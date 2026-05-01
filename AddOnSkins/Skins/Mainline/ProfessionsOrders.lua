@@ -251,7 +251,7 @@ function S:Blizzard_ProfessionsCustomerOrders()
 
 	-- Form
 	S:HandleButton(frame.Form.BackButton)
-	S:HandleCheckBox(frame.Form.TrackRecipeCheckBox.Checkbox)
+	if frame.Form.TrackRecipeCheckBox then S:HandleCheckBox(frame.Form.TrackRecipeCheckBox.Checkbox) end
 	frame.Form.RecipeHeader:Hide()
 	frame.Form.RecipeHeader:CreateBackdrop('Transparent')
 	frame.Form.LeftPanelBackground:StripTextures()
